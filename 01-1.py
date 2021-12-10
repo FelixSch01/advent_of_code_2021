@@ -14,3 +14,12 @@ else:
 
 # read input file
 depth_measurements = file.readlines()
+
+# loop over numbers
+i, result = 0
+while(i < len(depth_measurements)):
+    if i == 0:
+        continue
+    if depth_measurements[i] > depth_measurements[i - 1]:
+        result += 1
+    
