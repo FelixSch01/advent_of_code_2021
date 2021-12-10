@@ -15,11 +15,15 @@ else:
 # read input file
 depth_measurements = file.readlines()
 
-# loop over numbers
+# Loop over numbers to calculate the amount of times a number is bigger
+# compared to the previous number. The first number is excluded.
 i, result = 0
 while(i < len(depth_measurements)):
     if i == 0:
         continue
     if depth_measurements[i] > depth_measurements[i - 1]:
         result += 1
-    
+    i += 1
+
+# display the result
+print(result)
