@@ -4,22 +4,24 @@
 # https://adventofcode.com/2021/day/1
 
 # imports
-import sys as s
+import sys
 
 # handle arguments
-if len(s.argv[1:]) == 1:
-    file = s.argv[1]
+if len(sys.argv) == 2:
+    file = open(sys.argv[1])
 else:
     print('usage: 01-1.py <input file>')
-
+    sys.exit(-1)
 # read input file
 depth_measurements = file.readlines()
 
 # Loop over numbers to calculate the amount of times a number is bigger
 # compared to the previous number. The first number is excluded.
-i, result = 0
+i = 0
+result = 0
 while(i < len(depth_measurements)):
     if i == 0:
+        i += 1
         continue
     if depth_measurements[i] > depth_measurements[i - 1]:
         result += 1
