@@ -12,6 +12,7 @@ if len(sys.argv) == 2:
 else:
     print('usage: 01-1.py <input file>')
     sys.exit(-1)
+
 # read input file
 depth_measurements = file.readlines()
 
@@ -20,6 +21,7 @@ depth_measurements = file.readlines()
 i = 0
 result = 0
 while(i < len(depth_measurements)):
+    depth_measurements[i] = int(depth_measurements[i].rstrip())
     if i == 0:
         i += 1
         continue
