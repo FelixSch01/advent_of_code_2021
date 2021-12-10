@@ -13,4 +13,4 @@ else:
     print('usage: 01-1.py <input file>')
 
 # read input file
-depth_measurements = file.read()
+depth_measurements = file.readlines()
