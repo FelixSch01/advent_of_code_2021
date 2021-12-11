@@ -10,7 +10,7 @@ import sys
 if len(sys.argv) == 2:
     file = open(sys.argv[1])
 else:
-    print('usage: 01-1.py <input file>')
+    print('usage: 01.py <input file>')
     sys.exit(-1)
 
 # read input file and convert to int array
