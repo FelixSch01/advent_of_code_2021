@@ -48,5 +48,44 @@ def part_one(data):
         i += 1
     return int("".join(gamma), base=2) * int("".join(epsilon), base=2)
 
+# Part two is similar to part one. We want to compute the life support rating
+# of our vessel. In order to do that, we have to compute the most common value 
+# for each bit of diagnostic data, and only keep the lines with that value
+# at that position, then repeat until there is just one number left. This
+# number is the oxygen generator rating. There is also a CO2 scrubber rating,
+# which is computed the same way, except that only the lines with the least
+# common value are kept.
+def part_two(data):
+    return int(part_two_helper(data, "more"), base=2) * int(part_two_helper(data, "fewer"), base=2)
+def part_two_helper(data, bit_criteria):
+    if len(data) < 1:
+        return
+    elif len(data) == 1:
+        return data[0]
+
+    all_0, all_1 = [], []
+    for line in data:
+        if line[0] == "0":
+                all_0.append(line[1:])
+        elif line[0] == "1":
+                all_1.append(line[1:])
+
+    if bit_criteria == "more":
+        if len(all_0) > len(all_1):
+            return "0" + part_two_helper(all_0, bit_criteria)
+        elif len(all_0) == len(all_1):
+            return "1" + part_two_helper(all_1, bit_criteria)
+        elif len(all_1) > len(all_0):
+            return "1" + part_two_helper(all_1, bit_criteria)
+
+    if bit_criteria == "fewer":
+        if len(all_0) > len(all_1):
+            return "1" + part_two_helper(all_1, bit_criteria)
+        elif len(all_0) == len(all_1):
+            return "0" + part_two_helper(all_0, bit_criteria)
+        elif len(all_1) > len(all_0):
+            return "0" + part_two_helper(all_0, bit_criteria)
+        
 # display the results
-print("result for part_one: ", part_one(diagnostic_data))
+print("result for part one: ", part_one(diagnostic_data))
+print("result for part two: ", part_two(diagnostic_data))
